@@ -18,42 +18,25 @@ const [contact, setContact] = useState([])
     fetchapi();
         
     }, []);
-    return(
+    
+    if (!contact) {
+      return <div>Just a second!</div>;
+    }
+    
+    return (
       <div>
-      {contact && (
-        <div>
-          <p>
-            <b>Name:</b> {contact.name}
-          </p>
-          <p>
-            <b>Email:</b> {contact.email}
-          </p>
-          <p>
-            <b>Phone:</b> {contact.phone}
-          </p>
-          <div>
-            <b>Address</b>
-            <p>
-              <b>Street: </b>
-              {contact.address.street}
-              <br />
-              <b>City/Zip: </b>
-              {contact.address.city} {contact.address.zipcode}
-            </p>
-          </div>
-          <p>
-            <b>Company:</b> {contact.company.name}
-          </p>
-        </div>
-      )}
-      <button
-        onClick={() => {
-          setSelectedContactId(null);
-        }}>
-        Back
-      </button>
-    </div>
-    )
+        <h2>{contact.name}</h2>
+        <p>Email: {contact.email}</p>
+        <p>Phone: {contact.phone}</p>
+        <p>Username: {contact.username}</p>
+        <p>Website: {contact.website}</p>
+        <p>
+          Address: {contact.address?.street}, {contact.address?.suite}, {contact.address?.city}, {contact.address?.zipcode}
+        </p>
+        <p>Company: {contact.company?.name}</p>
+        <button onClick={() => setSelectedContactId(null)}>Back</button>
+      </div>
+    );
 }
 
 // export default selectedContact
