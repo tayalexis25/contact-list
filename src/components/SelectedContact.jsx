@@ -19,21 +19,40 @@ const [contact, setContact] = useState([])
         
     }, []);
     return(
-         <table>
-         <thead>
-           <tr>
-             <th colSpan="3">Contact</th>
-           </tr>
-         </thead>
-         <tbody>
-           <tr>
-             <td>{contact.name}</td>
-             <td>{contact.email}</td>
-             <td>{contact.phone}</td>
-           </tr>
-         </tbody>
-       </table>
-      
+      <div>
+      {contact && (
+        <div>
+          <p>
+            <b>Name:</b> {contact.name}
+          </p>
+          <p>
+            <b>Email:</b> {contact.email}
+          </p>
+          <p>
+            <b>Phone:</b> {contact.phone}
+          </p>
+          <div>
+            <b>Address</b>
+            <p>
+              <b>Street: </b>
+              {contact.address.street}
+              <br />
+              <b>City/Zip: </b>
+              {contact.address.city} {contact.address.zipcode}
+            </p>
+          </div>
+          <p>
+            <b>Company:</b> {contact.company.name}
+          </p>
+        </div>
+      )}
+      <button
+        onClick={() => {
+          setSelectedContactId(null);
+        }}>
+        Back
+      </button>
+    </div>
     )
 }
 
